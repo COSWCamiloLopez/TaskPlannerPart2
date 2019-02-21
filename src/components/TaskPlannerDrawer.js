@@ -183,7 +183,9 @@ class TaskPlannerDrawer extends Component {
                                 button
                                 onClick={this.handleChangeIsLoggedIn}
                             >
-                                <ListItemIcon><img src={ExitIcon} alt=""/></ListItemIcon>
+                                <ListItemIcon>
+                                    <img src={ExitIcon} alt=""/>
+                                </ListItemIcon>
                                 <ListItemText primary="Logout"/>
                             </ListItem>
                         </List>

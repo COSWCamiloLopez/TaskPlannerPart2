@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Login from './components/Login';
 import './App.css';
-import {AppBarPage} from './components/AppBar';
+import AppBarPage from './components/AppBar';
 import TaskPlanner from "./components/TaskPlanner";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import NewTask from "./components/NewTask";
 
 class App extends Component {
 
@@ -22,10 +23,20 @@ class App extends Component {
             </div>
         );
 
+        const newTaskView = () => (
+            <div>
+                <NewTask/>
+            </div>
+        );
+
         const routesLogged = [
             {
                 path: "/tasks",
                 component: taskPlannerView
+            },
+            {
+                path: "/newtask",
+                component: newTaskView
             }
         ];
 

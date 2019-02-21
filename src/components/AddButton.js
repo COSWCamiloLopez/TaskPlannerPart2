@@ -18,10 +18,16 @@ class AddButton extends Component {
         return (
             <div>
                 <Fab color="primary" aria-label="Add" className={classes.fab}>
-                    <AddIcon/>
+                    <AddIcon
+                        onClick={this.handleNewTask}
+                    />
                 </Fab>
             </div>
         );
+    }
+
+    handleNewTask(){
+        window.location.href = '/newtask';
     }
 }
 

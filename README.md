@@ -1,20 +1,16 @@
-# Task Planner Project - Front End
+# Task Planner Project - Front End - Part 2
 
-1. Create a new React JS Project
+1. Open the project created on Part 1
 
-    ```javascript
-    npx create-react-app task-planner-app
-    ```
-2. Creat the Login.js component and the CSS if needed (use Material-UI library!)
+2. Create the NewTask.js component and the CSS if needed (use Material-UI library!)
 
-![](images/login.png)
+![](images/new-task.png)
 
-3. Create a navigation drawer component with mocked user data (https://material-ui.com/demos/drawers/)
+3. Modify the App.js component so it uses *BrowserRouter* to enable the navigation from the + floating action button from the main view to take you to the *NewTask* component (https://reacttraining.com/react-router/web/example/basic)
 
-![](images/navigation-drawer.png)
+4. Implement the logic to be able to connect the main view so when you create a new task this task is added to the list on the main view.
 
-4. Create the main view that display the tasks using card layouts (https://material-ui.com/demos/cards/). 
-    This will be your model to represent a task:
+Remember the model to represent a task:
   ```javascript
        {
     	"description": "some description text ",
@@ -26,11 +22,12 @@
     	"dueDate": 156464645646
     }
 ```
+5. Implement the UserProfile.js component to update the user profile details (make sure this updates your navigationDrawer in your main view):
 
+![](images/update-profile.png)
 
-![](images/main.png)
+6. Create a Modal that is display the filter control options (https://material-ui.com/utils/modal/)
 
-5. Learn about service workers and Offline support: https://codelabs.developers.google.com/codelabs/offline/#0
-6. Use what you just learn to make your App work Offline
-7. Deploy your App to Heroky and submit your solution url! (https://dev.to/smithmanny/deploy-your-react-app-to-heroku-2b6f)
+![](images/add-filter.png)
 
+7. Implement the logic so when the filters are applied the data is filtered accordingly

@@ -113,6 +113,16 @@ class TaskPlannerDrawer extends Component {
             );
         });
 
+        let user;
+
+        const users = JSON.parse(localStorage.getItem("users"));
+
+        for (let x in users.list) {
+            if (users.list[x].username === localStorage.getItem("userLogged")) {
+                user = users.list[x];
+            }
+        }
+
         return (
             <div className={classes.root}>
                 <AppBar
@@ -155,10 +165,10 @@ class TaskPlannerDrawer extends Component {
                             <CardContent>
                                 <img src={userIcon} className={classes.userIcon} alt=""/>
                                 <Typography variant="subtitle2" gutterBottom>
-                                    <b>Johan Camilo López Girón</b>
+                                    <b>{user.fullname}</b>
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    johan.lopez@mail.escuelaing.edu.co
+                                    {user.email}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -210,7 +220,7 @@ class TaskPlannerDrawer extends Component {
         window.location.href = '/login';
     }
 
-    handleProfilePage(){
+    handleProfilePage() {
         window.location.href = "/profile"
     }
 }

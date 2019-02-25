@@ -5,6 +5,8 @@ import AppBarPage from './components/AppBar';
 import TaskPlanner from "./components/TaskPlanner";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import NewTask from "./components/NewTask";
+import UserProfile from "./components/UserProfile";
+import RegisterPage from "./components/RegisterPage";
 
 class App extends Component {
 
@@ -27,6 +29,14 @@ class App extends Component {
             <NewTask/>
         );
 
+        const userProfileView = () => (
+            <UserProfile/>
+        );
+
+        const registerPageView = () => (
+            <RegisterPage/>
+        );
+
         const routesLogged = [
             {
                 path: "/tasks",
@@ -35,13 +45,21 @@ class App extends Component {
             {
                 path: "/newtask",
                 component: newTaskView
+            },
+            {
+                path: "/profile",
+                component: userProfileView
             }
         ];
 
         const routesNoLogged = [
             {
-                path: "/",
+                path: "/login",
                 component: loginView
+            },
+            {
+                path: "/register",
+                component: registerPageView
             }
         ];
 
@@ -66,8 +84,6 @@ class App extends Component {
         });
 
         const isLogged = localStorage.getItem('isLoggedIn');
-
-        console.log(isLogged);
 
         return (
             <Router>

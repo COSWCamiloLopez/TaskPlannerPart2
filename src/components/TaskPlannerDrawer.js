@@ -18,8 +18,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExitIcon from "../images/baseline-exit_to_app-24px.svg";
-import NewTask from "./NewTask";
 import Task from "./Task";
+import Person from '@material-ui/icons/Person';
 
 const drawerWidth = 350;
 
@@ -165,6 +165,15 @@ class TaskPlannerDrawer extends Component {
                         <List>
                             <ListItem
                                 button
+                                onClick={this.handleProfilePage}
+                            >
+                                <ListItemIcon>
+                                    <Person/>
+                                </ListItemIcon>
+                                <ListItemText primary="Profile"/>
+                            </ListItem>
+                            <ListItem
+                                button
                                 onClick={this.handleChangeIsLoggedIn}
                             >
                                 <ListItemIcon>
@@ -198,7 +207,11 @@ class TaskPlannerDrawer extends Component {
 
     handleChangeIsLoggedIn() {
         localStorage.setItem("isLoggedIn", "false");
-        window.location.href = '/';
+        window.location.href = '/login';
+    }
+
+    handleProfilePage(){
+        window.location.href = "/profile"
     }
 }
 

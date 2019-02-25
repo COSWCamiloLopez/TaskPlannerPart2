@@ -29,7 +29,7 @@ class Login extends Component {
         this.handleChangeUser = this.handleChangeUser.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCreateAccount = this.handleCreateAccount.bind(this);
+        this.handleRegisterPage = this.handleRegisterPage.bind(this);
     }
 
     render() {
@@ -43,12 +43,15 @@ class Login extends Component {
                     alt=""
                 />
                 <br/>
-                <form className={classes.form}>
+                <form
+                    id="loginForm"
+                    className={classes.form}
+                    onSubmit={this.handleSubmit}
+                >
                     <TextField
                         required
                         id="user"
                         label="User"
-                        placeholder="User"
                         margin="normal"
                         className={classes.text}
                         variant="outlined"
@@ -60,7 +63,6 @@ class Login extends Component {
                         id="password"
                         label="Password"
                         type="password"
-                        placeholder="Password"
                         margin="normal"
                         variant="outlined"
                         className={classes.text}
@@ -68,22 +70,22 @@ class Login extends Component {
                     />
                     <br/>
                     <Button
-                        variant="outlined"
+                        variant="contained"
                         color="primary"
                         className={classes.button}
-                        onClick={this.handleSubmit}
+                        type="submit"
                     >
                         Login
                     </Button>
                     <br/>
                     <br/>
                     <Button
-                        variant="outlined"
+                        variant="contained"
                         color="primary"
                         className={classes.button}
-                        onClick={this.handleCreateAccount}
+                        onClick={this.handleRegisterPage}
                     >
-                        Create account
+                        Sign up
                     </Button>
                 </form>
             </div>
@@ -99,20 +101,34 @@ class Login extends Component {
     }
 
     handleSubmit(e) {
-        if (localStorage.getItem(this.state.user) !== null) {
-            if (localStorage.getItem(this.state.user) === this.state.password) {
-                localStorage.setItem("isLoggedIn", "true");
-                window.location.href = '/tasks';
+
+        e.preventDefault();
+
+        if (localStorage.getItem("users") !== null) {
+
+            const users = JSON.parse(localStorage.getItem("users"));
+
+            for (let x in users.list) {
+                if (users.list[x].username === this.state.user && users.list[x].password === this.state.password) {
+                    localStorage.setItem("userLogged", users.list[x].username);
+                    localStorage.setItem("isLoggedIn", "true");
+                    window.location.href = "/tasks";
+                }
             }
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                alert("Incorrect user or password");
+                document.getElementById("loginForm").reset();
+            }
+
         } else {
-            localStorage.setItem("isLoggedIn", "false");
-            window.location.href = '/';
+            alert("There is no users registered, please sign up");
+            window.location.href = "/register";
         }
     }
 
-    handleCreateAccount(){
-        localStorage.setItem("registerPage", "true");
-        window.location.reload();
+
+    handleRegisterPage() {
+        window.location.href = "/register";
     }
 }
 

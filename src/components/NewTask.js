@@ -7,8 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import 'typeface-roboto';
-import Task from "./Task";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const styles = theme => ({
     backButton: {
@@ -49,7 +47,6 @@ class NewTask extends Component {
     }
 
     render() {
-
 
         const {classes} = this.props;
 
@@ -113,7 +110,7 @@ class NewTask extends Component {
                 <br/>
 
                 <Typography variant="h2" gutterBottom>
-                    New Task
+                    Create your new task
                 </Typography>
                 <form className={classes.form} onSubmit={this.handleSendTask}>
 
@@ -176,8 +173,6 @@ class NewTask extends Component {
         const json = JSON.parse(localStorage.getItem("tasks"));
 
         json.list.push(taskItems);
-
-        console.log(json);
 
         localStorage.setItem("tasks", JSON.stringify(json));
 

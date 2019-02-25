@@ -12,13 +12,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import userIcon from "../images/user.png";
-import Task from "./Task";
 import AddButton from "./AddButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExitIcon from "../images/baseline-exit_to_app-24px.svg";
+import NewTask from "./NewTask";
+import Task from "./Task";
 
 const drawerWidth = 350;
 
@@ -91,7 +92,8 @@ class TaskPlannerDrawer extends Component {
         super(props);
 
         this.state = {
-            open: false
+            open: false,
+            tasks: []
         };
 
         this.handleChangeIsLoggedIn = this.handleChangeIsLoggedIn.bind(this);
@@ -99,31 +101,13 @@ class TaskPlannerDrawer extends Component {
 
     render() {
 
-        const tasks = [{
-            description: "Test description",
-            responsible: {
-                name: "Camilo",
-                email: "prueba@gmail.com"
-            },
-            status: "ready",
-            date: new Date(),
-            user: 1
-        }, {
-            description: "Test description1",
-            responsible: {
-                name: "Camilo",
-                email: "prueba@gmail.com"
-            },
-            status: "ready",
-            date: new Date(),
-            user: 1
-        }]
-
         const {classes} = this.props;
 
         const {open} = this.state;
 
-        const listTasks = tasks.map((x) => {
+        const json = JSON.parse(localStorage.getItem("tasks"));
+
+        const tasks = json.list.map((x) => {
             return (
                 <Task tasks={x}/>
             );
@@ -197,7 +181,7 @@ class TaskPlannerDrawer extends Component {
                     })}
                 >
                     <div className={classes.drawerHeader}/>
-                    {listTasks}
+                    {tasks}
                     <AddButton/>
                 </main>
             </div>

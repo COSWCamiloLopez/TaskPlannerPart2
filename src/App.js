@@ -24,9 +24,7 @@ class App extends Component {
         );
 
         const newTaskView = () => (
-            <div>
-                <NewTask/>
-            </div>
+            <NewTask/>
         );
 
         const routesLogged = [

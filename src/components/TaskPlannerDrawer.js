@@ -170,6 +170,12 @@ class TaskPlannerDrawer extends Component {
                                 <Typography variant="body1" gutterBottom>
                                     {user.email}
                                 </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    {user.occupation}
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    Cellphone: {user.phone}
+                                </Typography>
                             </CardContent>
                         </Card>
                         <List>

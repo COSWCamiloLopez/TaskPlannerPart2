@@ -12,7 +12,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import userIcon from "../images/user.png";
-import AddButton from "./AddButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -20,6 +19,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExitIcon from "../images/baseline-exit_to_app-24px.svg";
 import Task from "./Task";
 import Person from '@material-ui/icons/Person';
+import Tune from '@material-ui/icons/Tune';
+import Create from '@material-ui/icons/Create';
+import Button from "@material-ui/core/Button";
+import Modal from "./SimpleModal";
+
 
 const drawerWidth = 350;
 
@@ -83,6 +87,18 @@ const styles = theme => ({
     },
     userIcon: {
         width: '30%'
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    button: {
+        marginRight: 20
+    }, leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
+    toolbarTitle: {
+        flex: 1,
+        textAlign: "left"
     }
 });
 
@@ -140,9 +156,18 @@ class TaskPlannerDrawer extends Component {
                         >
                             <MenuIcon/>
                         </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
+                        <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
                             Task planner
                         </Typography>
+                        <Button
+                            color="inherit"
+                            className={classes.button}
+                            onClick={this.handleNewTask}
+                        >
+                            <Create className={classes.leftIcon}/>
+                            New task
+                        </Button>
+                        <Modal/>
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -207,7 +232,6 @@ class TaskPlannerDrawer extends Component {
                 >
                     <div className={classes.drawerHeader}/>
                     {tasks}
-                    <AddButton/>
                 </main>
             </div>
         );
@@ -228,6 +252,10 @@ class TaskPlannerDrawer extends Component {
 
     handleProfilePage() {
         window.location.href = "/profile"
+    }
+
+    handleNewTask() {
+        window.location.href = "/newtask"
     }
 }
 

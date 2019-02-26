@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import 'typeface-roboto';
+import MenuItem from "@material-ui/core/MenuItem";
 
 const styles = theme => ({
     backButton: {
@@ -18,7 +19,8 @@ const styles = theme => ({
         marginRight: theme.spacing.unit
     },
     text: {
-        width: '30%'
+        width: '30%',
+        textAlign: "left",
     },
     button: {
         width: '30%'
@@ -70,10 +72,6 @@ class NewTask extends Component {
                 onchange: this.handleChangeResponsible,
                 type: "text"
             }, {
-                field: "Status",
-                onchange: this.handleChangeStatus,
-                type: "text",
-            }, {
                 field: "Duedate",
                 onchange: this.handleChangeDuedate,
                 type: "date",
@@ -98,9 +96,15 @@ class NewTask extends Component {
             );
         });
 
-        const newTask = () => (
-            this.state.task
-        );
+        const options = ["In progress", "Ready", "Completed"]
+
+        const menuItems = options.map((x) => {
+            return (
+                <MenuItem value={x}>
+                    {x}
+                </MenuItem>
+            );
+        });
 
         return (
             <>
@@ -115,7 +119,24 @@ class NewTask extends Component {
                 <form className={classes.form} onSubmit={this.handleSendTask}>
 
                     {textFields}
-
+                    <TextField
+                        select
+                        required
+                        margin="normal"
+                        label="Status"
+                        className={classes.text}
+                        value={this.state.status}
+                        onChange={this.handleChangeStatus}
+                        SelectProps={{
+                            MenuProps: {
+                                className: classes.menu,
+                            },
+                        }}
+                        variant="outlined"
+                    >
+                        {menuItems}
+                    </TextField>
+                    <br/>
                     <Button
                         variant="contained"
                         color="primary"

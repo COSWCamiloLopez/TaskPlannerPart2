@@ -19,7 +19,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExitIcon from "../images/baseline-exit_to_app-24px.svg";
 import Task from "./Task";
 import Person from '@material-ui/icons/Person';
-import Tune from '@material-ui/icons/Tune';
 import Create from '@material-ui/icons/Create';
 import Button from "@material-ui/core/Button";
 import Modal from "./SimpleModal";
@@ -120,6 +119,13 @@ class TaskPlannerDrawer extends Component {
         const {classes} = this.props;
 
         const {open} = this.state;
+
+        if (localStorage.getItem("tasks") === null) {
+            const tasks = {
+                list: []
+            }
+            localStorage.setItem("tasks", JSON.stringify(tasks))
+        }
 
         const json = JSON.parse(localStorage.getItem("tasks"));
 
